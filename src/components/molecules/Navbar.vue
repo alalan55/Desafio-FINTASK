@@ -29,7 +29,7 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0.5rem;
-  height: 70px;
+  height: 100%;
 }
 .links {
   display: flex;
