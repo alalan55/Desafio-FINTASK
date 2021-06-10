@@ -4,9 +4,18 @@
     <Container>
       <SearchBar text="Pesquisar.." class="search__bar" />
       <CardsContainer>
-        <Card
+        <!-- <Card
           class="card"
           imgUrl="https://media2.giphy.com/media/LreojGy0iXK8e08iDK/giphy.gif?cid=99bfe7bcmlauco38plbeggg7jvypz4qm0v4rg7hffxjplodg&rid=giphy.gif&ct=g"
+          title="Teste"
+          description="Teste"
+        /> -->
+
+         <Card
+          v-for="gif in  $gifs"
+          :key="gif.id"
+          class="card"
+          :imgUrl=gif.dowsized.url
           title="Teste"
           description="Teste"
         />
@@ -28,8 +37,13 @@ export default {
     CardsContainer,
     Card,
   },
-  mounted() {
-    this.key = process.env.VUE_APP_API_KEY;
+  computed:{
+      $gifs(){
+          return this.$store.getters.$allGifs   
+      }
+  },
+  created(){
+      this.$store.dispatch('getGifs')
   },
   data() {
     return {
