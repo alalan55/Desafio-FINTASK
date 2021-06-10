@@ -3,13 +3,6 @@
         <slot/>
     </div>
 </template>
-
-<script>
-    export default {
-        
-    }
-</script>
-
 <style lang="css" scoped>
 .container{
     max-width: var(--max-width);
