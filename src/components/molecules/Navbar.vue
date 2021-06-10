@@ -26,9 +26,9 @@ export default {
   border: 1px solid;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: var(--min-padding);
   height: 100%;
 }
 .links {

@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
+:root{
+
+    /*Tamanhos máximos*/
+    --max-width: 1200px;
+
+    /*Paddings*/
+    --min-padding: 0.5rem;
+}
 *{
     margin: 0;
     padding: 0;
