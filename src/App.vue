@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-   <Header/>
+   <Home/>
   </div>
 </template>
 
 <script>
-import { Header } from '@/components/organisms'
+import { Home } from '@/components/templates'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Home
   }
 }
 </script>
