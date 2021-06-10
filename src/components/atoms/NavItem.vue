@@ -14,6 +14,6 @@ export default {
 <style lang="css" scoped>
 .nav__link {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 </style>

@@ -14,5 +14,6 @@ export default {
 .logo {
   font-weight: 700;
   text-transform: uppercase;
+  color: white;
 }
 </style>
