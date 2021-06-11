@@ -8,19 +8,13 @@
         @onkeypress="valorNavbar"
       />
       <CardsContainer class="card__container">
-        <!-- <Card
-          class="card"
-          imgUrl="https://media2.giphy.com/media/LreojGy0iXK8e08iDK/giphy.gif?cid=99bfe7bcmlauco38plbeggg7jvypz4qm0v4rg7hffxjplodg&rid=giphy.gif&ct=g"
-          title="Teste"
-          description="Teste"
-        /> -->
-
         <Card
           v-for="gif in dados"
           :key="gif.id"
           class="card"
           :imgUrl="gif.images.downsized.url"
           :title="gif.title"
+          @liked="likeGif(gif)"
         />
       </CardsContainer>
     </Container>
@@ -50,13 +44,12 @@ export default {
     this.start();
   },
   methods: {
-    ...mapActions(["getGifs", "addMoreGifs", "addGifSearch"]),
+    ...mapActions(["getGifs", "addMoreGifs", "addGifSearch", "moreGifsRandom", "addGifLike"]),
     async start() {
       await this.$store.dispatch("getGifs");
     },
     async loadMoreGifs() {
-      let newGifs = await this.getGifs();
-      this.addMoreGifs(newGifs);
+       await this.moreGifsRandom();
     },
     async handleScrol() {
       let element = document.querySelector(".card__container");
@@ -73,12 +66,17 @@ export default {
         let url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.VUE_APP_API_KEY}&limit=1&q=${val}`;
         const req = await fetch(url);
         const res = await req.json();
-
-        this.addGifSearch(res.data[0])
+        
+        if(res.data[0] != undefined){
+            this.addGifSearch(res.data[0])
+        }//fazer tratamento para aparecer mensagem caso o cara seja inválido
       } catch (error) {
-        console.error(error);
+        console.error('Erro louco aqui',error);
       }
     },
+    likeGif(e){
+      console.log('clicado', e)
+    }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScrol);

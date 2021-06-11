@@ -1,54 +1,60 @@
 <template>
-    <div class="ui card">
-  <div class="image">
-    <img :src="imgUrl">
-  </div>
-  <div class="content">
-    <a class="header">{{title}}</a>
-    <div class="description">
-      {{description}}
+  <div class="ui card">
+    <div class="image">
+      <img :src="imgUrl" lazyload="lazy" />
+    </div>
+    <div class="content">
+      <a class="header">{{ title }}</a>
+      <div class="description">
+        {{ description }}
+      </div>
+    </div>
+    <div class="extra content" >
+      <span class="left floated like">
+        <i class="like icon" ></i>
+        Curtir
+      </span>
     </div>
   </div>
-   <div class="extra content">
-    <span class="left floated like">
-      <i class="like icon"></i>
-      Curtir
-    </span>
-  </div>
-</div>
 </template>
 
 <script>
-    export default {
-        props:{
-            imgUrl:{Type: String, required: true},
-            title:{Type: String, required: true},
-            description:{Type: String}
-        }
-    }
+export default {
+  props: {
+    imgUrl: { Type: String, required: true },
+    title: { Type: String, required: true },
+    description: { Type: String },
+  },
+  metods: {
+    likeGif() {
+     // this.$emit("liked", e.target)
+      console.log('testeasdfasdfasd')
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>
-.card{
+.card {
   /* border: 1px solid; */
   /* height: 550px; */
 }
-.image{
+.image {
   /* border: 1px solid; */
   /* height: 400px; */
   overflow: hidden;
 }
-.image  img{
+.image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border: 1px solid red;
 }
-img{
+img {
   border: 1px solid red;
 }
-@media screen and (max-width:640px){
-  .card{
+@media screen and (max-width: 640px) {
+  .card {
     height: auto;
   }
 }
