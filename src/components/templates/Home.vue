@@ -11,12 +11,12 @@
           description="Teste"
         /> -->
 
-         <Card 
+        <Card
           v-for="gif in dados"
           :key="gif.id"
           class="card"
-          :imgUrl=gif.images.downsized.url
-          :title=gif.title
+          :imgUrl="gif.images.downsized.url"
+          :title="gif.title"
         />
       </CardsContainer>
     </Container>
@@ -36,20 +36,19 @@ export default {
     Card,
     CardsContainer,
   },
-  computed:{
-    dados(){
-      return this.$store.getters.$allGifs 
-    }
+  computed: {
+    dados() {
+      return this.$store.getters.$allGifs;
+    },
   },
-  created(){
-      this.start();
+  created() {
+    this.start();
   },
-  methods:{
-   async start(){
-     await this.$store.dispatch('getGifs')
-   }
-  }
-
+  methods: {
+    async start() {
+      await this.$store.dispatch("getGifs");
+    },
+  },
 };
 </script>
 
@@ -57,17 +56,17 @@ export default {
 .search__bar {
   margin: 2rem 0;
 }
-.card__container{
+.card__container {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
 }
-.card__container .card{
+.card__container .card {
   flex: 1 0 300px;
-  margin: .3rem;
+  margin: 0.3rem;
 }
-.card__container .card::v-deep img{
+.card__container .card::v-deep img {
   border: 1px solid red;
 }
 </style>
