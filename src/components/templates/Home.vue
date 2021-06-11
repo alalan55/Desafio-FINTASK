@@ -48,8 +48,8 @@ export default {
   methods:{
    async start(){
      await this.$store.dispatch('getGifs')
-     let response = await this.$store.getters.$allGifs 
-     this.gifs = response.data;
+     let response = this.$store.getters.$allGifs 
+     this.gifs = response.data
    }
   }
 
