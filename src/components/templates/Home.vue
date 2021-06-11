@@ -50,7 +50,7 @@ export default {
     this.start();
   },
   methods: {
-    ...mapActions(["getGifs", "addMoreGifs"]),
+    ...mapActions(["getGifs", "addMoreGifs", "addGifSearch"]),
     async start() {
       await this.$store.dispatch("getGifs");
     },
@@ -73,8 +73,8 @@ export default {
         let url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.VUE_APP_API_KEY}&limit=1&q=${val}`;
         const req = await fetch(url);
         const res = await req.json();
-        
-        this.addMoreGifs(res.data[0])
+
+        this.addGifSearch(res.data[0])
       } catch (error) {
         console.error(error);
       }
