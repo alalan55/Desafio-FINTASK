@@ -2,7 +2,11 @@
   <div class="conteudo">
     <Header />
     <Container>
-      <SearchBar text="Pesquisar.." class="search__bar" />
+      <SearchBar
+        text="Pesquisar.."
+        class="search__bar"
+        @onkeypress="valorNavbar"
+      />
       <CardsContainer class="card__container">
         <!-- <Card
           class="card"
@@ -24,6 +28,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import { Container, CardsContainer } from "@/components/bosons";
 import { Header, Card } from "@/components/organisms";
 import { SearchBar } from "@/components/atoms";
@@ -45,9 +50,41 @@ export default {
     this.start();
   },
   methods: {
+    ...mapActions(["getGifs", "addMoreGifs"]),
     async start() {
       await this.$store.dispatch("getGifs");
     },
+    async loadMoreGifs() {
+      let newGifs = await this.getGifs();
+      this.addMoreGifs(newGifs);
+    },
+    async handleScrol() {
+      let element = document.querySelector(".card__container");
+
+      if (element.getBoundingClientRect().bottom < window.innerHeight) {
+        await this.loadMoreGifs();
+      }
+    },
+    valorNavbar(e) {
+      this.searchGif(e);
+    },
+    async searchGif(val) {
+      try {
+        let url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.VUE_APP_API_KEY}&limit=1&q=${val}`;
+        const req = await fetch(url);
+        const res = await req.json();
+        
+        this.addMoreGifs(res.data[0])
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScrol);
+  },
+  unmounted() {
+    window.removeEventListener("scroll", this.handleScrol);
   },
 };
 </script>
