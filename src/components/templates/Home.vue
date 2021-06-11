@@ -12,7 +12,7 @@
         /> -->
 
          <Card 
-          v-for="gif in gifs"
+          v-for="gif in dados"
           :key="gif.id"
           class="card"
           :imgUrl=gif.images.downsized.url
@@ -35,11 +35,10 @@ export default {
     Header,
     Card,
     CardsContainer,
-    
   },
-  data(){
-    return{
-     gifs:[]
+  computed:{
+    dados(){
+      return this.$store.getters.$allGifs 
     }
   },
   created(){
@@ -48,8 +47,6 @@ export default {
   methods:{
    async start(){
      await this.$store.dispatch('getGifs')
-     let response = this.$store.getters.$allGifs 
-     this.gifs = response.data
    }
   }
 
@@ -69,9 +66,6 @@ export default {
 .card__container .card{
   flex: 1 0 300px;
   margin: .3rem;
-  /* border: 1px solid red; */
-  /* height: 500px; */
-  
 }
 .card__container .card::v-deep img{
   border: 1px solid red;
