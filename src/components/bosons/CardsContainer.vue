@@ -12,7 +12,6 @@
 
 <style lang="css" scoped>
 .cards__container{
-    border: 1px solid;
     widows: 100%;
 }
 

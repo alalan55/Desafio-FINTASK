@@ -3,7 +3,7 @@
     <Header />
     <Container>
       <SearchBar text="Pesquisar.." class="search__bar" />
-      <CardsContainer>
+      <CardsContainer class="card__container">
         <!-- <Card
           class="card"
           imgUrl="https://media2.giphy.com/media/LreojGy0iXK8e08iDK/giphy.gif?cid=99bfe7bcmlauco38plbeggg7jvypz4qm0v4rg7hffxjplodg&rid=giphy.gif&ct=g"
@@ -11,13 +11,12 @@
           description="Teste"
         /> -->
 
-         <Card
-          v-for="gif in  $gifs"
+         <Card 
+          v-for="gif in gifs"
           :key="gif.id"
           class="card"
-          :imgUrl=gif.dowsized.url
-          title="Teste"
-          description="Teste"
+          :imgUrl=gif.images.downsized.url
+          :title=gif.title
         />
       </CardsContainer>
     </Container>
@@ -34,27 +33,47 @@ export default {
     SearchBar,
     Container,
     Header,
-    CardsContainer,
     Card,
+    CardsContainer,
+    
   },
-  computed:{
-      $gifs(){
-          return this.$store.getters.$allGifs   
-      }
+  data(){
+    return{
+     gifs:[]
+    }
   },
   created(){
-      this.$store.dispatch('getGifs')
+      this.start();
   },
-  data() {
-    return {
-      key: "",
-    };
-  },
+  methods:{
+   async start(){
+     await this.$store.dispatch('getGifs')
+     let response = await this.$store.getters.$allGifs 
+     this.gifs = response.data;
+   }
+  }
+
 };
 </script>
 
 <style lang="css" scoped>
 .search__bar {
   margin: 2rem 0;
+}
+.card__container{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card__container .card{
+  flex: 1 0 300px;
+  margin: .3rem;
+  /* border: 1px solid red; */
+  /* height: 500px; */
+  
+}
+.card__container .card::v-deep img{
+  border: 1px solid red;
 }
 </style>

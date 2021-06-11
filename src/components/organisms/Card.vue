@@ -23,11 +23,33 @@
         props:{
             imgUrl:{Type: String, required: true},
             title:{Type: String, required: true},
-            description:{Type: String, required: true}
+            description:{Type: String}
         }
     }
 </script>
 
 <style lang="css" scoped>
-
+.card{
+  /* border: 1px solid; */
+  /* height: 550px; */
+}
+.image{
+  /* border: 1px solid; */
+  /* height: 400px; */
+  overflow: hidden;
+}
+.image  img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border: 1px solid red;
+}
+img{
+  border: 1px solid red;
+}
+@media screen and (max-width:640px){
+  .card{
+    height: auto;
+  }
+}
 </style>
