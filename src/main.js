@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-css/semantic.min.js'
 
 import '@/styles/style.css'
 

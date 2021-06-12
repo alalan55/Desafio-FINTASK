@@ -31,7 +31,6 @@ export default createStore({
         async getGifs(context) {
             try {
                 let url = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.VUE_APP_API_KEY}&limit=25&rating=g`
-               // https://api.giphy.com/v1/gifs/random?api_key=DqdUffGbYPWlP236nYgbzOpuInk2CzUm&tag=&rating=g
 
                 const req = await fetch(url)
                 const res = await req.json()
@@ -44,7 +43,6 @@ export default createStore({
                     context.commit('SET_GIFS', [])
                     return []
                 }
-
             } catch (error) {
                 console.error(error)
                 throw error;
@@ -78,6 +76,7 @@ export default createStore({
             commit("ADD_GIFS_SEARCH", await gifs)
         },
         addGifLike(context){
+            console.log(context)
             this.commit("ADD_GIF_LIKE", context)
         }
     },
