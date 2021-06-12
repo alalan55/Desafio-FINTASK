@@ -9,12 +9,7 @@
         {{ description }}
       </div>
     </div>
-    <div class="extra content" >
-      <span class="left floated like">
-        <i class="like icon" ></i>
-        Curtir
-      </span>
-    </div>
+  <slot/>
   </div>
 </template>
 
@@ -25,11 +20,13 @@ export default {
     title: { Type: String, required: true },
     description: { Type: String },
   },
+  data(){
+    return{
+      curtido:false
+    }
+  },
   metods: {
-    likeGif() {
-     // this.$emit("liked", e.target)
-      console.log('testeasdfasdfasd')
-    },
+ 
   },
 };
 </script>

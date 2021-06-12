@@ -19,6 +19,7 @@ export default {
   sendArgs(e){
     if(e.key =="Enter"){
       this.$emit("onkeypress", this.valor)
+      this.valor= ''
     }
   }
   }
