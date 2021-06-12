@@ -21,7 +21,7 @@
             :title="gif.title"
             :username="gif?.username"
             :avtUrl="gif?.user?.avatar_url"
-            :description="gif.user?.description"
+            :description="gif?.user?.description"
           />
         </Card>
       </CardsContainer>
@@ -126,7 +126,7 @@ export default {
   flex: 1 0 300px;
   margin: 0.3rem;
 }
-.card__container .card::v-deep img {
+/* .card__container .card::v-deep img {
   border: 1px solid red;
-}
+}   V:DEEP ESTA DIFERENTE, FERICIAR SE REALMENTE VAI SER NECESSÁRIO PARA IMPLEMENTAR*/
 </style>

@@ -53,7 +53,7 @@ export default createStore({
             try {
                 let url = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.VUE_APP_API_KEY}&tag=&rating=g`
 
-                for(let i =0; i<5; i++){
+                for(let i =0; i<6; i++){
 
                     const req = await fetch(url)
                     const res = await req.json()

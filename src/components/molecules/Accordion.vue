@@ -7,7 +7,7 @@
     <div class="content active" v-if="active">
       <p class="transition visible">
         <ul class="infos">
-            <li><span>Title</span> - span {{title}}</li>
+            <li><span>Title</span> - {{title}}</li>
             <li><span>Username</span>  - {{username}}</li>
             <li><span>Avatar URL</span>  - <span class="link">{{avtUrl}}</span></li>
             <li><span>Description</span>  - {{description}}</li>
@@ -20,11 +20,11 @@
 <script>
 export default {
     props:{
-        maisInfo:{Type: String, required: true},
-        title: {Type: String, required: true},
-        username: {Trpe: String, requires: true},
-        avtUrl:{Type: String},
-        description:{Type: String}
+        maisInfo:{Type: String, required: true, default: 'Não informado'},
+        title: {Type: String, required: true, default: 'Não informado'},
+        username: {Trpe: String, required: true, default: 'Não informado'},
+        avtUrl:{Type: String, default: 'Não informado' },
+        description:{Type: String, default: 'Não informado'}
 
     },
     data(){
