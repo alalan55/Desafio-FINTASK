@@ -1,5 +1,5 @@
 <template>
-  <a :href="to" target="_blank" class="nav__link">{{ text }}</a>
+  <router-link :to="to" class="nav__link">{{text}}</router-link>
 </template>
 
 <script>
