@@ -12,9 +12,7 @@ export default createStore({
         ADD_GIFS(state, gifs){
             gifs.forEach(element => {
                 state.gifs.push(element)
-                console.log(state.gifs.length,'ADD_GIFS')
             });
-            console.log(state.gifs.length)
         },
         ADD_GIFS_RANDOM(state, gifs){
                 state.gifs.push(gifs)
@@ -24,7 +22,6 @@ export default createStore({
         },
         ADD_GIF_LIKE(state, gifs){
             state.curtidos.push(gifs)
-            console.log(state.curtidos.length)
         }
     },
     actions: {
@@ -75,14 +72,16 @@ export default createStore({
         async addGifSearch({commit}, gifs){
             commit("ADD_GIFS_SEARCH", await gifs)
         },
-        addGifLike(context){
-            console.log(context,'cheguei no store')
-            this.commit("ADD_GIF_LIKE", context)
+        async addGifLike({commit}, gif){
+            commit("ADD_GIF_LIKE",await gif)
         }
     },
     getters: {
         $allGifs(state) {
             return state.gifs
+        },
+        $likedGifs(state){
+            return state.curtidos
         }
     }
 })

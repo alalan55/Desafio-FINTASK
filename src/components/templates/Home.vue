@@ -98,11 +98,12 @@ export default {
     },
     likeGif(e) {
       //true
-      console.log('likeGif', e)
+      e
+     // console.log('likeGif', e)
     },
-    gifValue(e) {
-      this.addGifLike(e)
-      console.log('gifValue', e)
+    async gifValue(e) {
+     await this.addGifLike(e)
+     
     },
   },
   mounted() {
