@@ -1,3 +1,4 @@
+// import { findIndex } from 'core-js/fn/array';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -22,6 +23,15 @@ export default createStore({
         },
         ADD_GIF_LIKE(state, gifs){
             state.curtidos.push(gifs)
+        },
+        UPDATE_GIF(state, gif){
+            console.log(state, gif)
+        },
+        REMOVE_GIF_LIKED(state, gif){
+            //  state.curtidos.splice(indexOf(gif.id), 1)
+         if(state.curtidos.some(e => e.id === gif)){
+             console.log('encontrado, porem indexOf não está funcionando')
+         }
         }
     },
     actions: {
@@ -73,7 +83,13 @@ export default createStore({
             commit("ADD_GIFS_SEARCH", await gifs)
         },
         async addGifLike({commit}, gif){
-            commit("ADD_GIF_LIKE",await gif)
+            commit("ADD_GIF_LIKE", await gif)
+        },
+        updateGif({commit}, gif){
+            commit("UPDATE_GIF", gif)
+        },
+        deleteGifLiked({commit}, gif){
+            commit("REMOVE_GIF_LIKED", gif)
         }
     },
     getters: {
