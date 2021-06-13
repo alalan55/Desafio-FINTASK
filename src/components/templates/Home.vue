@@ -97,10 +97,12 @@ export default {
       }
     },
     likeGif(e) {
-      return e;
+      //true
+      console.log('likeGif', e)
     },
     gifValue(e) {
-      return e;
+      this.addGifLike(e)
+      console.log('gifValue', e)
     },
   },
   mounted() {

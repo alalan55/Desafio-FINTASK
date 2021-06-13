@@ -76,7 +76,7 @@ export default createStore({
             commit("ADD_GIFS_SEARCH", await gifs)
         },
         addGifLike(context){
-            console.log(context)
+            console.log(context,'cheguei no store')
             this.commit("ADD_GIF_LIKE", context)
         }
     },

@@ -4,8 +4,8 @@
       <Logo text="Desafio fintask" />
     </div>
     <ul class="links">
-      <li><NavItem to="#" text="Home" /></li>
-      <li><NavItem to="#" text="Curtidas" /></li>
+      <li><NavItem to="/" text="Home" /></li>
+      <li><NavItem to="/curtidos" text="Curtidas" /></li>
     </ul>
   </nav>
 </template>
