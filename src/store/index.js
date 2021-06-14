@@ -1,3 +1,4 @@
+// import { findIndex } from 'core-js/fn/array';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -12,9 +13,7 @@ export default createStore({
         ADD_GIFS(state, gifs){
             gifs.forEach(element => {
                 state.gifs.push(element)
-                console.log(state.gifs.length,'ADD_GIFS')
             });
-            console.log(state.gifs.length)
         },
         ADD_GIFS_RANDOM(state, gifs){
                 state.gifs.push(gifs)
@@ -24,7 +23,15 @@ export default createStore({
         },
         ADD_GIF_LIKE(state, gifs){
             state.curtidos.push(gifs)
-            console.log(state.curtidos.length)
+        },
+        UPDATE_GIF(state, gif){
+            console.log(state, gif)
+        },
+        REMOVE_GIF_LIKED(state, gif){
+            //  state.curtidos.splice(indexOf(gif.id), 1)
+         if(state.curtidos.some(e => e.id === gif)){
+             console.log('encontrado, porem indexOf não está funcionando')
+         }
         }
     },
     actions: {
@@ -75,14 +82,22 @@ export default createStore({
         async addGifSearch({commit}, gifs){
             commit("ADD_GIFS_SEARCH", await gifs)
         },
-        addGifLike(context){
-            console.log(context,'cheguei no store')
-            this.commit("ADD_GIF_LIKE", context)
+        async addGifLike({commit}, gif){
+            commit("ADD_GIF_LIKE", await gif)
+        },
+        updateGif({commit}, gif){
+            commit("UPDATE_GIF", gif)
+        },
+        deleteGifLiked({commit}, gif){
+            commit("REMOVE_GIF_LIKED", gif)
         }
     },
     getters: {
         $allGifs(state) {
             return state.gifs
+        },
+        $likedGifs(state){
+            return state.curtidos
         }
     }
 })

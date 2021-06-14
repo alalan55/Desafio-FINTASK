@@ -4,7 +4,7 @@
       <i class="dropdown icon" ></i>
       {{maisInfo}}
     </div>
-    <div class="content active" v-if="active">
+    <div class="content active" v-show="active">
       <p class="transition visible">
         <ul class="infos">
             <li><span>Title</span> - {{title}}</li>

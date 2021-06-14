@@ -16,4 +16,9 @@ export default {
   text-decoration: none;
   color: white;
 }
+a:hover,
+a.router-link-active{
+  border-bottom: 1.5px solid white;
+}
+
 </style>
