@@ -2,9 +2,8 @@
   <div class="conteudo">
     <Header />
     <Container>
-        <h1>GIFS que você curtiu</h1>
+      <h1>GIFS que você curtiu</h1>
       <CardsContainer class="card__container">
-
         <Card
           v-for="gif in dados"
           :key="gif.id"
@@ -12,42 +11,38 @@
           :imgUrl="gif.images.downsized.url"
           :title="gif.title"
         >
-          <EditDelete @clicked="editar" @click="edited(gif)" @removed="remover(gif.id)"/>
+          <EditDelete
+            @clicked="editar"
+            @click="edited(gif)"
+            @removed="remover(gif)"
+          />
 
-           <Accordion
+          <Accordion
             maisInfo="Mais infos.."
             :title="gif.title"
             :username="gif?.username"
             :avtUrl="gif?.user?.avatar_url"
             :description="gif?.user?.description"
           />
-          
         </Card>
       </CardsContainer>
     </Container>
-    
 
-  <div class="ui modal" :class="{block : clicado}" >
-    <i class="close icon" @click="cancel"></i>
-    <div class="header">Modal Title</div>
-    <div class="content">
-        <Input text="Titulo" class="inpt" v-model="titulo"/>
-     
-      
-      <Input text="Username" class="inpt" v-model="username"/>
-      <Input text="Avatar url" class="inpt" v-model="avatarUrl" />
-      <Input text="Description" class="inpt" v-model="description" />
-      <!-- <div class="image">An image can appear on left or an icon</div>
-      <div class="description">A description can appear on the right</div> -->
+    <div class="ui modal" :class="{ block: clicado }">
+      <i class="close icon" @click="cancel"></i>
+      <div class="header">Modal Title</div>
+      <div class="content">
+        <Input text="Titulo" class="inpt" v-model="titulo" />
+
+        <Input text="Username" class="inpt" v-model="username" />
+        <Input text="Avatar url" class="inpt" v-model="avatarUrl" />
+        <Input text="Description" class="inpt" v-model="description" />
+      </div>
+      <div class="actions">
+        <button class="ui red basic button" @click="cancel">Cancelar</button>
+        <button class="ui green basic button" @click="save()">Salvar</button>
+      </div>
     </div>
-    <div class="actions">
-      <button class="ui red basic button" @click="cancel">Cancelar</button>
-      <button class="ui green basic button" @click="save()">Salvar</button>
-    </div>
-  </div>
-
-
-    
   </div>
 </template>
 
@@ -56,17 +51,17 @@ import { Input } from "@/components/atoms";
 import { mapActions } from "vuex";
 import { Header, Card } from "@/components/organisms";
 import { Container, CardsContainer } from "@/components/bosons";
-import { EditDelete, Accordion} from '@/components/molecules'
+import { EditDelete, Accordion } from "@/components/molecules";
 export default {
   components: {
     Header,
     Container,
     CardsContainer,
-  //  Modal,
+    //  Modal,
     Card,
     EditDelete,
     Input,
-    Accordion
+    Accordion,
   },
   computed: {
     dados() {
@@ -79,67 +74,60 @@ export default {
     start() {
       this.$store.dispatch("addGifLike");
     },
-    editar(e){
-        this.clicado = e
-        //console.log(e)
+    editar(e) {
+      this.clicado = e;
     },
-    edited(e){
-        this.obj = e
-            this.titulo = this.obj.title
-            this.avatarUrl = e.user?.avatar_url
-            this.username = e.username
-            this.description = e.user?.description
-       
-       return this.obj
-       
-    },
-    save(){
-        let retorno = this.obj
-        let obj = {
-             ...retorno,
-            title:  this.titulo,
-            username: this.username,
-            user:{
-                avatar_url: this.avatarUrl,
-                description: this.description
-            },
-           
-        }
+    edited(e) {
+      this.obj = e;
 
-        this.updateGif(obj)
-    },
-    remover(e){
-        this.deleteGifLiked(e)
-    },
-    cancel(){
-        this.clicado = false
-    },
-    // remove(){
+      this.titulo = this.obj.title;
+      this.avatarUrl = e.user?.avatar_url;
+      this.username = e.username;
+      this.description = e.user?.description;
 
-    // }
+      return this.obj;
+    },
+    save() {
+      let obj = {
+        ...this.obj,
+        title: this.titulo,
+        username: this.username,
+        user: {
+          avatar_url: this.avatarUrl,
+          description: this.description,
+        },
+      };
+      this.updateGif(obj);
+      this.clicado = false;
+    },
+    remover(e) {
+      this.deleteGifLiked(e);
+    },
+    cancel() {
+      this.clicado = false;
+    },
   },
-  data(){
-      return{
-          clicado: false,
-          editData: {},
-          titulo: '',
-          descricao: '',
-          username: '',
-          avatarUrl:'',
-          description: '',
-          obj: null
-
-      }
-  }
+  data() {
+    return {
+      clicado: false,
+      editData: {},
+      titulo: "",
+      descricao: "",
+      username: "",
+      avatarUrl: "",
+      description: "",
+      obj: null,
+    };
+  },
 };
 </script>
 
 <style lang="css" scoped>
-.conteudo{
-    position: relative;
-    border: 1px solid red;
-    height: 100vh;
-    overflow-y: auto;
+.conteudo {
+  position: relative;
+  border: 1px solid red;
+  height: 100vh;
+  overflow-y: auto;
 }
 .card__container {
   display: flex;
@@ -152,13 +140,8 @@ export default {
   margin: 0.3rem;
 }
 
-
-
-
-
-
-.block{
-    display: block;
+.block {
+  display: block;
 }
 .modal {
   border: 1px solid red;
@@ -176,6 +159,4 @@ export default {
 .inpt {
   margin: 0.5rem;
 }
-
-
 </style>
