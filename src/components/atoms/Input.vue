@@ -14,14 +14,6 @@ export default {
     return{
       valor: ''
     }
-  },
-  methods:{
-  sendArgs(e){
-    if(e.key =="Enter"){
-      this.$emit("onkeypress", this.valor)
-      this.valor= ''
-    }
-  }
   }
 };
 </script>
