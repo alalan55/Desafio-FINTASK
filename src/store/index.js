@@ -20,8 +20,11 @@ export default createStore({
         ADD_GIFS_SEARCH(state, gifs) {
             state.gifs.unshift(gifs)
         },
-        ADD_GIF_LIKE(state, gifs) {
-            state.curtidos.unshift(gifs)
+        ADD_GIF_LIKE(state, gif) {
+            
+            if(!state.curtidos.find(el => el.id === gif.id)){
+                state.curtidos.unshift(gif)
+            }
         },
         UPDATE_GIF(state, gif) {
             const x = state.curtidos.find(ele => ele.id == gif.id)

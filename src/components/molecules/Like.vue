@@ -1,7 +1,7 @@
 <template>
       <div class="extra content" >
-      <span class="left floated like" @click="likeGif">
-        <i class="like icon" ></i>
+      <span class="left floated like">
+        <i class="like icon" @click="likeGif" ></i>
         Curtir
       </span>
     </div>
