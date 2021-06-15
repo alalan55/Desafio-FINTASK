@@ -15,7 +15,7 @@
           :imgUrl="gif.images.downsized.url"
           :title="gif.title"
         >
-          <Like @like="likeGif" @click="gifValue(gif)" />
+          <Like @click="gifValue(gif)" />
           <Accordion
             maisInfo="Mais infos.."
             :title="gif.title"
@@ -96,11 +96,6 @@ export default {
         console.error("Erro louco aqui", error);
       }
     },
-    likeGif(e) {
-      //true
-      e
-     // console.log('likeGif', e)
-    },
     async gifValue(e) {
      await this.addGifLike(e)
      
@@ -129,7 +124,4 @@ export default {
   flex: 1 0 300px;
   margin: 0.3rem;
 }
-/* .card__container .card::v-deep img {
-  border: 1px solid red;
-}   V:DEEP ESTA DIFERENTE, FERICIAR SE REALMENTE VAI SER NECESSÁRIO PARA IMPLEMENTAR*/
 </style>
