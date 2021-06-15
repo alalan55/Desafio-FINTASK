@@ -8,22 +8,29 @@
         @onkeypress="valorNavbar"
       />
       <CardsContainer class="card__container">
-        <Card
-          v-for="gif in dados"
-          :key="gif.id"
-          class="card"
-          :imgUrl="gif.images.downsized.url"
-          :title="gif.title"
-        >
-          <Like @click="gifValue(gif)" />
-          <Accordion
-            maisInfo="Mais infos.."
-            :title="gif.title"
-            :username="gif?.username"
-            :avtUrl="gif?.user?.avatar_url"
-            :description="gif?.user?.description"
-          />
-        </Card>
+        <Suspense>
+          <template #default>
+            <Card
+              v-for="gif in dados"
+              :key="gif.id"
+              class="card"
+              :imgUrl="gif.images.downsized.url"
+              :title="gif.title"
+            >
+              <Like @click="gifValue(gif)" />
+              <Accordion
+                maisInfo="Mais infos.."
+                :title="gif.title"
+                :username="gif?.username"
+                :avtUrl="gif?.user?.avatar_url"
+                :description="gif?.user?.description"
+              />
+            </Card>
+          </template>
+          <template #fallback> 
+            <div class="loading">Carregando conteudo...</div>
+          </template>
+        </Suspense>
       </CardsContainer>
     </Container>
   </div>
@@ -32,7 +39,7 @@
 <script>
 import { mapActions } from "vuex";
 import { Container, CardsContainer } from "@/components/bosons";
-import { Header, Card } from "@/components/organisms";
+import { Header, Card, } from "@/components/organisms";
 import { SearchBar } from "@/components/atoms";
 import { Like, Accordion } from "@/components/molecules";
 
@@ -97,8 +104,7 @@ export default {
       }
     },
     async gifValue(e) {
-     await this.addGifLike(e)
-     
+      await this.addGifLike(e);
     },
   },
   mounted() {
