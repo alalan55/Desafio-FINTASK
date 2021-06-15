@@ -27,30 +27,23 @@
           />
         </Card>
       </CardsContainer>
+
+      <Modal :class="{ block: clicado }" @cancelar="cancel" @salvar="save">
+        <div class="content">
+          <Input text="Titulo" class="inpt" v-model="titulo" />
+          <Input text="Username" class="inpt" v-model="username" />
+          <Input text="Avatar url" class="inpt" v-model="avatarUrl" />
+          <Input text="Description" class="inpt" v-model="description" />
+        </div>
+      </Modal>
     </Container>
-
-    <div class="ui modal" :class="{ block: clicado }">
-      <i class="close icon" @click="cancel"></i>
-      <div class="header">Edição</div>
-      <div class="content">
-        <Input text="Titulo" class="inpt" v-model="titulo" />
-
-        <Input text="Username" class="inpt" v-model="username" />
-        <Input text="Avatar url" class="inpt" v-model="avatarUrl" />
-        <Input text="Description" class="inpt" v-model="description" />
-      </div>
-      <div class="actions">
-        <button class="ui red basic button" @click="cancel">Cancelar</button>
-        <button class="ui green basic button" @click="save()">Salvar</button>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import { Input } from "@/components/atoms";
 import { mapActions } from "vuex";
-import { Header, Card } from "@/components/organisms";
+import { Header, Card, Modal } from "@/components/organisms";
 import { Container, CardsContainer } from "@/components/bosons";
 import { EditDelete, Accordion } from "@/components/molecules";
 export default {
@@ -58,7 +51,7 @@ export default {
     Header,
     Container,
     CardsContainer,
-    //  Modal,
+    Modal,
     Card,
     EditDelete,
     Input,
@@ -77,13 +70,11 @@ export default {
     },
     editar(e) {
       this.clicado = e;
-      // console.log('CLICADO EM EDITAR', e)
-       window.scrollTo(0,0)
-       document.body.scrollTop = document.documentElement.scrollTop = 0;
+      // window.scrollTo(0, 0);
+      // document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     edited(e) {
       this.obj = e;
-
       this.titulo = this.obj.title;
       this.avatarUrl = e.user?.avatar_url;
       this.username = e.username;
@@ -107,9 +98,9 @@ export default {
     remover(e) {
       this.deleteGifLiked(e);
     },
-    cancel() {
-      this.clicado = false;
-    },
+    cancel(e) {
+      this.clicado = e;
+    }
   },
   data() {
     return {
@@ -139,24 +130,12 @@ export default {
   flex-wrap: wrap;
 }
 .card__container .card {
-  flex: 1 0 300px;
+  flex: 0 0 200px;
   margin: 0.3rem;
 }
 
 .block {
   display: block;
-}
-.modal {
-  /* display: block; */
-  position: absolute;
-  top: 50%; /* position the top  edge of the element at the middle of the parent */
-  left: 50%; /* position the left edge of the element at the middle of the parent */
-
-  transform: translate(
-    -50%,
-    -50%
-  ); /* This is a shorthand of
-                                         translateX(-50%) and translateY(-50%) */
 }
 .inpt {
   margin: 0.5rem;

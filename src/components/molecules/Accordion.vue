@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.accordion{
+  width: 100%;
+}
 .infos li{
     list-style: none;
     margin-top: .5rem;

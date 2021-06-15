@@ -1,56 +1,30 @@
 <template>
-  <div class="ui modal" :class="{block: open}">
+  <div class="ui modal">
     <i class="close icon"></i>
+    <i class="close icon" @click="$emit('cancelar', false)"></i>
     <div class="header">Edição</div>
-    <div class="content">
-      <Input :placeholder="text" class="inpt" v-model="valor" />
-      <Input :placeholder="text" class="inpt" v-model="valor" />
-      <Input :placeholder="text" class="inpt" v-model="valor" />
-      <Input :placeholder="text" class="inpt" v-model="valor" />
-    </div>
+
+    <slot />
+
     <div class="actions">
-      <button class="ui red basic button" @keypress="cancel">Cancelar</button>
-      <button class="ui green basic button" @keypress="sendArgs">Salvar</button>
+      <button class="ui red basic button" @click="$emit('cancelar', false)">
+        Cancelar
+      </button>
+      <button class="ui green basic button" @click="$emit('salvar', true)">
+        Salvar
+      </button>
     </div>
   </div>
 </template> 
 
 <script>
-import { Input } from "@/components/atoms";
 export default {
-  components: {
-    Input,
-  },
-  props: {
-    text: { Type: String },
-  },
-  data() {
-    return {
-      valor: "",
-      open: false
-    };
-  },
-  methods: {
-    sendArgs(e) {
-      if (e.key == "Enter") {
-        this.$emit("onkeypress", this.valor);
-        this.valor = "";
-      }
-    },
-    cancel(){
-
-    }
-  },
+  emits: ["cancelar", "salvar"],
 };
 </script>
 
 <style lang="css" scoped>
-.block{
-    display: block;
-}
 .modal {
-  border: 1px solid red;
-  /* display: block; */
   position: absolute;
   top: 50%; /* position the top  edge of the element at the middle of the parent */
   left: 50%; /* position the left edge of the element at the middle of the parent */
@@ -58,8 +32,7 @@ export default {
   transform: translate(
     -50%,
     -50%
-  ); /* This is a shorthand of
-                                         translateX(-50%) and translateY(-50%) */
+  ); 
 }
 .inpt {
   margin: 0.5rem;
