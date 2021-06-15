@@ -2,7 +2,8 @@
   <div class="conteudo">
     <Header />
     <Container>
-      <h1>GIFS que você curtiu</h1>
+      <h1 v-if="dados.length">GIFS que você curtiu</h1>
+      <h1 v-else>Ops, parece que você ainda não curtiu nada..</h1>
       <CardsContainer class="card__container">
         <Card
           v-for="gif in dados"
@@ -30,7 +31,7 @@
 
     <div class="ui modal" :class="{ block: clicado }">
       <i class="close icon" @click="cancel"></i>
-      <div class="header">Modal Title</div>
+      <div class="header">Edição</div>
       <div class="content">
         <Input text="Titulo" class="inpt" v-model="titulo" />
 
@@ -76,6 +77,9 @@ export default {
     },
     editar(e) {
       this.clicado = e;
+      // console.log('CLICADO EM EDITAR', e)
+       window.scrollTo(0,0)
+       document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     edited(e) {
       this.obj = e;
@@ -125,7 +129,6 @@ export default {
 <style lang="css" scoped>
 .conteudo {
   position: relative;
-  border: 1px solid red;
   height: 100vh;
   overflow-y: auto;
 }
@@ -144,7 +147,6 @@ export default {
   display: block;
 }
 .modal {
-  border: 1px solid red;
   /* display: block; */
   position: absolute;
   top: 50%; /* position the top  edge of the element at the middle of the parent */

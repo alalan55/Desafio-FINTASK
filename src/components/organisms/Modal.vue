@@ -1,14 +1,12 @@
 <template>
   <div class="ui modal" :class="{block: open}">
     <i class="close icon"></i>
-    <div class="header">Modal Title</div>
+    <div class="header">Edição</div>
     <div class="content">
       <Input :placeholder="text" class="inpt" v-model="valor" />
       <Input :placeholder="text" class="inpt" v-model="valor" />
       <Input :placeholder="text" class="inpt" v-model="valor" />
       <Input :placeholder="text" class="inpt" v-model="valor" />
-      <!-- <div class="image">An image can appear on left or an icon</div>
-      <div class="description">A description can appear on the right</div> -->
     </div>
     <div class="actions">
       <button class="ui red basic button" @keypress="cancel">Cancelar</button>
