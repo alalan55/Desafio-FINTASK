@@ -98,7 +98,7 @@ export default {
 
         if (res.data[0] != undefined) {
           this.addGifSearch(res.data[0]);
-        } //fazer tratamento para aparecer mensagem caso o cara seja inválido
+        }
       } catch (error) {
         console.error("Erro louco aqui", error);
       }
