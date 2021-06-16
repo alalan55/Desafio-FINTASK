@@ -70,8 +70,6 @@ export default {
     },
     editar(e) {
       this.clicado = e;
-      // window.scrollTo(0, 0);
-      // document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     edited(e) {
       this.obj = e;
