@@ -1,13 +1,20 @@
-# desafio-fintask
+# Desafio FINTASK
 
-Projeto desenvolvido como um desafio para empresa Fintask. O desafio propunha de criar um MVP, consumindo a API do GIPHY, necessitando ter: carregamento infinito de gifs, buscar gif especifico, mostrar mais informações sobre o gif, salvar o gif e realizar algumas coisas com os gifs salvos, como visualizar, editar e remover o mesmo..
+Projeto desenvolvido como um desafio para empresa Fintask. O desafio propunha de criar um MVP, consumindo a API do GIPHY, tendo como requisitos: carregamento infinito de gifs, buscar gif especifico, mostrar mais informações sobre o gif, salvar o gif e realizar algumas operações com os gifs salvos, como visualizar, editar e remover o mesmo.
 
 Projeto foi desenvolvido usando:
 
+<img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue-dot-js&logoColor=4FC08D" width="50">
+
 :atom: Atomic design
+
 📍 Vue-router
+
 ✖️ Vuex
+
 🐋 Docker
+
+🖊️Semantic UI
 
 ## Project setup
 ```
