@@ -1,40 +1,27 @@
 <template>
   <div class="ui card">
     <div class="image">
-      <img :src="imgUrl"  />
+      <img  />
+      <h2>Carregand</h2>
     </div>
     <div class="content">
-      <a class="header">{{ title }}</a>
+      <a class="header"></a>
       <div class="description">
-        {{ description }}
       </div>
     </div>
-  <slot/>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    imgUrl: { Type: String, required: true },
-    title: { Type: String, required: true },
-    description: { Type: String },
-  },
-  data(){
-    return{
-      curtido:false
-    }
-  },
-  metods: {
- 
-  },
-};
-</script>
 
 <style lang="css" scoped>
-
+.card{
+    border: 5px solid pink;
+}
 .image {
   overflow: hidden;
+  height: 5rem;
+  width: 100%;
+  border: 1px solid red;
 }
 .image img {
   height: 100%;
